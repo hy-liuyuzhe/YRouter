@@ -1,3 +1,7 @@
+```
+一个用于帮助 flutter APP widget间跳转的工具
+```
+
 # y_router
 
 A new Flutter package project.
