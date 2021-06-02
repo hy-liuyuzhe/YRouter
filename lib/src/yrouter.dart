@@ -7,10 +7,11 @@ class YRouter {
       {required Widget child,
       required List<AnimationEnum> animationTypes,
       Curve curve = Curves.linear,
-      Duration duration = const Duration(milliseconds: 300)}) {
+      int durationMs = 300}) {
 
     return PageRouteBuilder(
-        transitionDuration: duration,
+        transitionDuration: Duration(milliseconds: durationMs),
+        reverseTransitionDuration: Duration(milliseconds: durationMs),
         pageBuilder: (BuildContext context, Animation<double> animation,
             Animation<double> secondaryAnimation) {
           return child;
