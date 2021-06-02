@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:github_yrouter/second_page_widget.dart';
+import 'package:y_router/y_router.dart';
 
 void main() {
   runApp(YRouterApp());
@@ -10,6 +11,12 @@ class YRouterApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.blue),
+      onGenerateRoute: (settings) {
+        return YRouter.buildRoute(child: SecondPageWidget(), animationTypes: [
+          AnimationEnum.fade,
+          AnimationEnum.slideFromBottom,
+        ]);
+      },
       home: Scaffold(
         appBar: AppBar(
           title: Text("YRouterApp"),
@@ -34,13 +41,29 @@ class _ListViewWidgetState extends State<ListViewWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: TextButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (c) {
-              return SecondPageWidget();
-            }));
-          },
-          child: Text("普通跳转")),
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    YRouter.buildRoute(
+                        child: SecondPageWidget(),
+                        animationTypes: [
+                          AnimationEnum.size,
+                        ]));
+              },
+              child: Text("push跳转")),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/simple");
+              },
+              child: Text("pushNamed跳转")),
+        ],
+      ),
     );
   }
 }

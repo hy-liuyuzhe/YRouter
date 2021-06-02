@@ -4,14 +4,23 @@ import 'package:flutter/material.dart';
 class SecondPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var one = Calculator().addOne(1);
-    print("one= $one");
     return Scaffold(
       appBar: AppBar(
-        title: Text("新页面"),
+        title: Text("第二个页面"),
       ),
       body: Container(
-        child: Center(child: Text("新页面")),
+        color: Colors.grey,
+        child: Center(
+            child: GestureDetector(
+              onTap: (){
+                Navigator.of(context).pop();
+              },
+              child: Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.blue,
+                  child: Center(child: Text("第二个页面"))),
+            )),
       ),
     );
   }
