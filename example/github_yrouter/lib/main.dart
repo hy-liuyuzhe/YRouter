@@ -9,6 +9,8 @@ void main() {
   runApp(YRouterApp());
 }
 
+const DEFAULT_DURATION = 500;
+
 class YRouterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class YRouterApp extends StatelessWidget {
               AnimationEnum.cubicY
             ],
             currentPage: settings.arguments as Widget,
-            transitionMs: 2000);
+            transitionMs: DEFAULT_DURATION);
       },
       home: ListViewWidget(),
     );
@@ -52,7 +54,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
         title: "size fade cubicX",
         types: [AnimationEnum.size, AnimationEnum.fade,AnimationEnum.cubicX]));
 
-    dataList.add(ItemCheckTitleModel.create(title: "scale fade cubicY", types: [
+    dataList.add(ItemCheckTitleModel.create(title: "scale fade cubicX", types: [
       AnimationEnum.fade,
       AnimationEnum.scale,
       AnimationEnum.cubicX,
@@ -84,7 +86,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
                 context: context,
                 types: checkedTypeList,
                 target: SecondPageWidget(),
-                durationMs: 2000,
+                durationMs: DEFAULT_DURATION,
                 currentPage: context.widget);
           },
           elevation: 8,
@@ -97,7 +99,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
                     context: context,
                     types: checkedTypeList,
                     target: SecondPageWidget(),
-                    durationMs: 1000,
+                    durationMs: DEFAULT_DURATION,
                     currentPage: context.widget);
               },
               child: Text("push跳转")),
