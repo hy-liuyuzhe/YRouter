@@ -4,9 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:y_router/src/animation_enum.dart';
 
 class YRouter {
-  static Future<T?> push<T extends Object?>(
+  static Future<T?> simplePush<T extends Object?>(
       {required BuildContext context,
       required AnimationEnum type,
+      required Widget target,
+      Widget? currentPage,
+      int durationMs = 300}) {
+    return push(
+        context: context,
+        types: [type],
+        target: target,
+        currentPage: currentPage,
+        durationMs: durationMs);
+  }
+
+  static Future<T?> push<T extends Object?>(
+      {required BuildContext context,
+      required List<AnimationEnum> types,
       required Widget target,
       Widget? currentPage,
       int durationMs = 300}) {
@@ -14,7 +28,7 @@ class YRouter {
         context,
         buildRoute(
             target: target,
-            animationTypes: [type],
+            animationTypes: types,
             currentPage: currentPage,
             transitionMs: durationMs,
             reverseTransitionMs: durationMs));
@@ -32,6 +46,7 @@ class YRouter {
       assert(currentPage != null);
     }
 
+    print("types= $animationTypes");
     return PageRouteBuilder(
         transitionDuration: Duration(milliseconds: transitionMs),
         reverseTransitionDuration: Duration(milliseconds: reverseTransitionMs),

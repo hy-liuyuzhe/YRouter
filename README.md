@@ -11,25 +11,38 @@
 Your can use YRouter to push route
 
 ```
-YRouter.push(
-    context: context,
-    type: AnimationEnum.cubicY,
-    target: SecondPageWidget(),
-);
+    YRouter.push(
+        context: context,
+        type: AnimationEnum.cubicY,
+        target: SecondPageWidget(),
+    );
 ```
 
 or use Navigator to push route
 
 ```
-fianl route = YRouter.buildRoute(target: SecondPageWidget(), animationTypes: [
+    fianl route = YRouter.buildRoute(target: SecondPageWidget(), animationTypes: [
+              AnimationEnum.size,
+              AnimationEnum.fade,
+              AnimationEnum.cubicY],
+                currentPage: settings.arguments as Widget,
+                transitionMs: 2000);
+    
+    Navigator.push(context, route);
+
+```
+
+or
+
+```
+  onGenerateRoute: (settings) {
+        return YRouter.buildRoute(target: SecondPageWidget(), animationTypes: [
           AnimationEnum.size,
           AnimationEnum.fade,
           AnimationEnum.cubicY],
             currentPage: settings.arguments as Widget,
             transitionMs: 2000);
-
-Navigator.push(context, route);
-
+      },
 ```
 
 You can choose the following types:
