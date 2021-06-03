@@ -11,18 +11,17 @@ class YRouterApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.blue),
+      debugShowCheckedModeBanner: false,
       onGenerateRoute: (settings) {
-        return YRouter.buildRoute(child: SecondPageWidget(), animationTypes: [
+
+        return YRouter.buildRoute(target: SecondPageWidget(), animationTypes: [
+          AnimationEnum.size,
           AnimationEnum.fade,
-          AnimationEnum.slideFromBottom,
-        ]);
+          AnimationEnum.cubicY],
+            currentPage: settings.arguments as Widget,
+            transitionMs: 2000);
       },
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("YRouterApp"),
-        ),
-        body: ListViewWidget(),
-      ),
+      home: ListViewWidget(),
     );
   }
 }
@@ -34,36 +33,34 @@ class ListViewWidget extends StatefulWidget {
 
 class _ListViewWidgetState extends State<ListViewWidget> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    YRouter.buildRoute(
-                        child: SecondPageWidget(),
-                        animationTypes: [
-                          AnimationEnum.size,
-                        ]));
-              },
-              child: Text("push跳转")),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, "/simple");
-              },
-              child: Text("pushNamed跳转")),
-        ],
-      ),
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("YRouterApp"),
+        ),
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    YRouter.push(
+                        context: context,
+                        type: AnimationEnum.cubicY,
+                        target: SecondPageWidget(),
+                        durationMs: 1000,
+                        currentPage: context.widget);
+                  },
+                  child: Text("push跳转")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/simple", arguments: context.widget);
+                  },
+                  child: Text("pushNamed跳转")),
+            ],
+          ),
+        ));
   }
 }

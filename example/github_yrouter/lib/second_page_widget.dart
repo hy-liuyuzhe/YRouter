@@ -9,7 +9,7 @@ class SecondPageWidget extends StatelessWidget {
         title: Text("第二个页面"),
       ),
       body: Container(
-        color: Colors.grey,
+        color: Colors.red.shade50,
         child: Center(
             child: GestureDetector(
               onTap: (){
