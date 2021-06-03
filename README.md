@@ -4,15 +4,50 @@
 
 # y_router
 
-A new Flutter package project.
+🧑‍💻 Route animation by using flutter's transition widget
 
 ## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+Your can use YRouter to push route
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```
+YRouter.push(
+    context: context,
+    type: AnimationEnum.cubicY,
+    target: SecondPageWidget(),
+);
+```
+
+or use Navigator to push route
+
+```
+fianl route = YRouter.buildRoute(target: SecondPageWidget(), animationTypes: [
+          AnimationEnum.size,
+          AnimationEnum.fade,
+          AnimationEnum.cubicY],
+            currentPage: settings.arguments as Widget,
+            transitionMs: 2000);
+
+Navigator.push(context, route);
+
+```
+
+You can choose the following types:
+
+```
+enum AnimationEnum {
+  fade,
+  size,
+  rotate,
+  scale,
+  cubicX,
+  cubicY,
+  slideFromLeft,
+  slideFromRight,
+  slideFromTop,
+  slideFromBottom
+}
+
+```
+
+Are you're done 👍 
