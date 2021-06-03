@@ -6,6 +6,10 @@
 
 🧑‍💻 Route animation by using flutter's transition widget
 
+
+![](readme_content.gif)
+![](readme_splash.png)
+
 ## Getting Started
 
 ### Add dependency
@@ -55,7 +59,7 @@ onGenerateRoute: (settings) {
 },
 ```
 
-You can choose the following types:
+You can choose the following types And supports multiple
 
 ```
 enum AnimationEnum {
@@ -73,4 +77,4 @@ enum AnimationEnum {
 
 ```
 
-Are you're done 👍 
+You have learned 👍 
