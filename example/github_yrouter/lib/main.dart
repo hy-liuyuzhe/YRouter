@@ -39,12 +39,15 @@ class ListViewWidget extends StatefulWidget {
 }
 
 class _ListViewWidgetState extends State<ListViewWidget> {
-
   List<ItemCheckTitleModel> dataList = [];
 
   @override
   void initState() {
     super.initState();
+    _initDataList();
+  }
+
+  void _initDataList() {
     dataList.add(ItemCheckTitleModel.create(
         title: "size fade cubicY",
         checked: true,
@@ -52,7 +55,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
 
     dataList.add(ItemCheckTitleModel.create(
         title: "size fade cubicX",
-        types: [AnimationEnum.size, AnimationEnum.fade,AnimationEnum.cubicX]));
+        types: [AnimationEnum.size, AnimationEnum.fade, AnimationEnum.cubicX]));
 
     dataList.add(ItemCheckTitleModel.create(title: "scale fade cubicX", types: [
       AnimationEnum.fade,
@@ -66,7 +69,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
     }
   }
 
-  List<AnimationEnum> get checkedTypeList {
+  List<AnimationEnum> get _checkedTypeList {
     Set<AnimationEnum> types = {};
     for (var model in dataList) {
       if (model.checked) types.addAll(model.types);
@@ -84,7 +87,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
           onPressed: () {
             YRouter.push(
                 context: context,
-                types: checkedTypeList,
+                types: _checkedTypeList,
                 target: SecondPageWidget(),
                 durationMs: DEFAULT_DURATION,
                 currentPage: context.widget);
@@ -97,7 +100,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
               onPressed: () {
                 YRouter.push(
                     context: context,
-                    types: checkedTypeList,
+                    types: _checkedTypeList,
                     target: SecondPageWidget(),
                     durationMs: DEFAULT_DURATION,
                     currentPage: context.widget);
